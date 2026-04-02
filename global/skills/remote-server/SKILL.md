@@ -91,6 +91,12 @@ All LXCs are unprivileged (`unprivileged: 1`), so root inside maps to uid 100000
 
 Always edit configs locally first, then push. Never edit directly on the server.
 
+Git pull on the server requires SSH agent forwarding (`ssh -A jan@server`) -- there is no GitHub SSH key on the server.
+
+Before writing a docker-compose.yml for a new image, check the image's docs for required env vars, default database type, and CORS behaviour. Don't assume defaults.
+
+Pi-hole (192.168.144.20) has no SSH access and no stored API credentials -- DNS records must be added manually via the web UI.
+
 ## Troubleshooting
 
 **`curl: (23) client returned ERROR on write of N bytes` in a piped script**

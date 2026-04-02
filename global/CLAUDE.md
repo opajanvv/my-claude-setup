@@ -1,8 +1,6 @@
 # Global rules
 
 ## Working style
-- When writing health checks or connectivity tests, verify the HTTP method matches what the endpoint expects (POST-only endpoints return 405 on GET)
-- Before applying Hyprland windowrules or features, verify they exist in the running version (test with `hyprctl keyword` or check docs). Hyprland drops features between versions.
 - Trust Jan's expertise; ask rather than assume wrong
 - Work in small chunks; high-level structure first
 - Prefer minimal solutions; don't create plugins when a simple hook/script will do
@@ -45,22 +43,7 @@ Each subdirectory has its own CLAUDE.md with specific instructions. Work in the 
 - **Mystrap**: `~/dev/mystrap` is the dotfiles repository. Uses stow, so scripts go in `dotfiles/shell/.local/bin/`. Skills live in `dotfiles/claude/.claude/skills/` and are tracked in this repo — commit skill changes via mystrap.
 - **Vault scripts**: `~/.local/bin/vault-*` scripts for scanning, cleanup, creating tasks, and TODAY.md generation
 - **Calendar**: `~/.local/bin/calendar-today` fetches Google Calendar events (see `llm-context/google-api.md`)
-- **Homelab**: `~/dev/homelab-docker` contains Docker Compose files
-
-## Server operations
-- Use the `remote-server` skill for running commands on the Proxmox server via SSH
-- Source configs in `~/dev/homelab-docker/` are deployed via git push + pull on server (bind-mounted into LXCs)
-- Git pull on the server requires SSH agent forwarding (`ssh -A jan@server`) -- there is no GitHub SSH key on the server
-- All LXCs are unprivileged -- bind-mounted files must be world-readable (`o+rX`)
-- The `/opt/homelab-docker` bind mount is not writable from inside a CT. To create files (e.g. `.env`), write to the host path `/home/jan/homelab-docker/` instead.
-- Before writing a docker-compose.yml for a new image, check the image's docs for required env vars, default database type, and CORS behaviour. Don't assume defaults.
-- Never assume local edits apply automatically to remote servers
-- Pi-hole (192.168.144.20) has no SSH access and no stored API credentials -- DNS records must be added manually via the web UI
-
-## rclone operations
-- `rclone move`/`rclone sync` fails on overlapping remotes (e.g. subdirectory → parent). Use `rclone copy --files-from` instead when source and destination share a common ancestor.
-- Before running `rclone purge` or `rclone delete`, verify the destination file count matches expectations. Only purge after confirming the move/copy succeeded.
-- Don't pipe rclone output inline (e.g. `rclone lsf ... | grep ...`). Write to a file first, then process separately — shell pipes mangle rclone's argument parsing.
+- **Homelab**: use the `remote-server` skill for server operations; source configs in `~/dev/homelab-docker/`
 
 ## Git commits
 - Never run git commit directly. Always use the auto-committer agent via the Task tool.
