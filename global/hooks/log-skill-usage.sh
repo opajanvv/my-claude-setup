@@ -1,5 +1,6 @@
 #!/bin/bash
 # Log Claude skill invocations to ~/.local/share/claude/skill-usage.log
+# Purpose: find never-used skills that can be removed or merged
 
 input=$(cat)
 tool_name=$(echo "$input" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('tool_name',''))" 2>/dev/null)
