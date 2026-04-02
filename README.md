@@ -95,6 +95,37 @@ Minimal CLAUDE.md files defining documentation areas and domain-specific rules.
 
 A single command (`/publish`) that commits, rsyncs to a server, and clears cache.
 
+## Context on demand
+
+The global CLAUDE.md is deliberately small. It doesn't try to explain everything -- it just points Claude to an `llm-context/` folder with short summaries per topic. Claude reads only what's relevant to the current task.
+
+The folder looks like this:
+
+```
+llm-context/
+├── index.md              -- trigger table: which file to load when
+├── 3d-printing.md
+├── ai-infrastructure.md
+├── church.md
+├── claude-code.md
+├── commands.md
+├── desktop.md
+├── google-api.md
+├── homelab.md
+├── personal.md
+├── vault-structure.md
+├── workflow-principles.md
+└── writing-style.md
+```
+
+The `index.md` has a trigger table mapping keywords to files. When a conversation touches "homelab" or "Docker", Claude knows to read `homelab.md`. When it's about "Hyprland" or "keybindings", it loads `desktop.md`. No file is longer than a page or two.
+
+These summaries in turn point to deeper documentation when needed. `homelab.md` links to detailed Proxmox configuration docs, service-specific pages, network diagrams. Claude follows those links only when the conversation actually goes that deep. Three layers: CLAUDE.md -> llm-context summary -> full documentation. Most conversations never get past the second.
+
+This keeps every conversation lightweight. Claude doesn't burn context on your 3D printer setup when you're asking about calendar integration.
+
+The whole llm-context idea comes from Teresa Torres' excellent writeup [Give Claude Code a memory](https://www.producttalk.org/give-claude-code-a-memory/). I took her concept and ran with it.
+
 ## How I manage these files
 
 The global config lives in my dotfiles repo ([mystrap](https://github.com/opajanvv/janstrap)) and is deployed to `~/.claude/` via GNU Stow. Project-level files live in their respective repos.
