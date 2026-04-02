@@ -43,7 +43,7 @@ Skills are reusable capabilities that Claude can invoke with `/skillname`. Each 
 |-------|-------------|
 | **plan** | Structured spec-plan-do workflow that scales from tiny fixes to large projects |
 | **evaluate** | Session retrospective: reflect on what went well/wrong, improve instructions |
-| **skill-creator** | Meta-skill for creating new skills (includes validation scripts) |
+| **skill-creator** | Meta-skill for creating new skills (includes validation scripts). From [anthropics/skills](https://github.com/anthropics/skills) |
 | **review-text** | Writing review with style-aware feedback (Dutch + English) |
 | **review-docs** | Documentation health check: finds orphans, missing index entries, overgrown files |
 | **new-doc** | Files new documentation into the correct location with index updates |
