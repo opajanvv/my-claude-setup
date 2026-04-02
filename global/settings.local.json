@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yay:*)",
+      "Bash(sort:*)",
+      "Bash(systemctl list-unit-files:*)",
+      "Bash(cat:*)",
+      "Bash(echo === Cron entries to check ===:*)",
+      "Bash(uv tool:*)",
+      "Bash(mise list:*)",
+      "WebFetch(domain:wiki.hypr.land)",
+      "Bash(hyprctl getoption:*)",
+      "Read(//etc/systemd/system/**)",
+      "Read(//home/jan/.config/systemd/user/**)",
+      "Read(//var/log/**)",
+      "Bash(journalctl --user -g mystrap --no-pager -n 20)",
+      "Bash(journalctl -u cron --no-pager -n 50)",
+      "Bash(journalctl -u cronie --no-pager --since 2026-03-22)",
+      "Bash(echo \"Shell: $SHELL\")",
+      "Read(//usr/lib/**)",
+      "Bash(pacman -Qe)",
+      "Bash(pacman -Qi yay aether asdcontrol makima-bin terminaltexteffects-git fcitx5 fcitx5-gtk fcitx5-qt)",
+      "Bash(pacman -Qi fprintd pam-u2f libfido2)"
+    ]
+  }
+}
