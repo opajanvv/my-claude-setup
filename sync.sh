@@ -3,70 +3,75 @@ set -eu
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Sync manifest: source -> destination
-# Each line: source_path destination_path
-# Directories end with /
-sync_manifest() {
-    cat <<'EOF'
-# Global config (from mystrap stow package)
-~/dev/mystrap/dotfiles/claude/.claude/CLAUDE.md           global/CLAUDE.md
-~/dev/mystrap/dotfiles/claude/.claude/settings.json       global/settings.json
-~/dev/mystrap/dotfiles/claude/.claude/settings.local.json global/settings.local.json
-~/dev/mystrap/dotfiles/claude/.claude/statusline.sh       global/statusline.sh
-~/dev/mystrap/dotfiles/claude/.claude/agents/             global/agents/
-~/dev/mystrap/dotfiles/claude/.claude/hooks/              global/hooks/
-~/dev/mystrap/dotfiles/claude/.claude/skills/             global/skills/
-
-# Project: planning (GTD-style task management)
-~/Cloud/janvv/life/planning/CLAUDE.md                     projects/planning/CLAUDE.md
-~/Cloud/janvv/life/planning/.claude/commands/             projects/planning/commands/
-
-# Project: vault root (multi-workspace routing)
-~/Cloud/janvv/life/CLAUDE.md                              projects/vault-root/CLAUDE.md
-~/Cloud/janvv/life/.claude/hooks/                         projects/vault-root/hooks/
-
-# Project: docs
-~/Cloud/janvv/life/docs/CLAUDE.md                         projects/docs/CLAUDE.md
-~/Cloud/janvv/life/docs/homelab/CLAUDE.md                 projects/docs/homelab/CLAUDE.md
-
-# Project: website (publish workflow)
-~/dev/janvv.nl/.claude/commands/publish.md                projects/website/commands/publish.md
-EOF
-}
-
-# Expand ~ to $HOME
 expand_path() {
     echo "$1" | sed "s|^~|$HOME|"
 }
 
-echo "Syncing files to $REPO_DIR..."
-
-sync_manifest | while IFS= read -r line; do
-    # Skip comments and empty lines
-    case "$line" in
-        '#'*|'') continue ;;
-    esac
-
-    src=$(echo "$line" | awk '{print $1}')
-    dst=$(echo "$line" | awk '{print $2}')
-    src=$(expand_path "$src")
-    dst="$REPO_DIR/$dst"
+sync_item() {
+    src="$1"
+    dst="$REPO_DIR/$2"
 
     if [ ! -e "$src" ]; then
-        echo "SKIP (not found): $src"
-        continue
+        return
     fi
 
-    # Directory sync
     if [ -d "$src" ]; then
         mkdir -p "$dst"
         rsync -a --delete "$src" "$dst"
-        echo "DIR:  $dst"
+        echo "DIR:  $2"
     else
         mkdir -p "$(dirname "$dst")"
         cp -a "$src" "$dst"
-        echo "FILE: $dst"
+        echo "FILE: $2"
     fi
-done
+}
+
+# --- Global config (mystrap stow layout, not standard Claude structure) ---
+
+GLOBAL_SRC=~/dev/mystrap/dotfiles/claude/.claude
+GLOBAL_SRC=$(expand_path "$GLOBAL_SRC")
+
+sync_item "$GLOBAL_SRC/CLAUDE.md"           "global/CLAUDE.md"
+sync_item "$GLOBAL_SRC/settings.json"       "global/settings.json"
+sync_item "$GLOBAL_SRC/settings.local.json" "global/settings.local.json"
+sync_item "$GLOBAL_SRC/statusline.sh"       "global/statusline.sh"
+sync_item "$GLOBAL_SRC/agents/"             "global/agents/"
+sync_item "$GLOBAL_SRC/hooks/"              "global/hooks/"
+sync_item "$GLOBAL_SRC/skills/"             "global/skills/"
+
+# --- Projects (auto-discover Claude config patterns) ---
+
+sync_project() {
+    name="$1"
+    src=$(expand_path "$2")
+
+    # Top-level CLAUDE.md
+    sync_item "$src/CLAUDE.md" "projects/$name/CLAUDE.md"
+
+    # .claude/ subdirectories
+    for dir in commands hooks agents; do
+        sync_item "$src/.claude/$dir/" "projects/$name/$dir/"
+    done
+
+    # .claude/settings.local.json
+    sync_item "$src/.claude/settings.local.json" "projects/$name/settings.local.json"
+
+    # Nested CLAUDE.md files (one level deep)
+    if [ -d "$src" ]; then
+        for child in "$src"/*/; do
+            child_name=$(basename "$child")
+            if [ -f "$child/CLAUDE.md" ]; then
+                sync_item "$child/CLAUDE.md" "projects/$name/$child_name/CLAUDE.md"
+            fi
+        done
+    fi
+}
+
+echo "Syncing files to $REPO_DIR..."
+
+sync_project "planning"    "~/Cloud/janvv/life/planning"
+sync_project "vault-root"  "~/Cloud/janvv/life"
+sync_project "docs"        "~/Cloud/janvv/life/docs"
+sync_project "website"     "~/dev/janvv.nl"
 
 echo "Done. Run 'git diff' to review changes."
