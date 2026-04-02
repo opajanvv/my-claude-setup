@@ -1,8 +1,10 @@
 # my-claude-setup
 
-My personal [Claude Code](https://docs.anthropic.com/en/docs/claude-code) configuration: skills, hooks, agents, commands, and CLAUDE.md files across multiple projects.
+My personal [Claude Code](https://docs.anthropic.com/en/docs/claude-code) configuration: skills, hooks, agents, commands, and CLAUDE.md files.
 
-> **This is not a template.** These files are tailored to my specific setup (Arch Linux, Hyprland, Obsidian vault, Proxmox homelab). Don't blindly copy-paste them into your own config. Instead, read through them to understand the patterns, then build your own version that fits your workflow.
+Yes, this is a lot of config for a retired guy with no business to run. But I spent about 50 years in software, and now that I don't have to build things, I get to tinker with AI for fun. Turns out you can sink just as many hours into configuring your tools as into actually using them.
+
+> **Not a template.** These files are tailored to my setup (Arch Linux, Hyprland, Obsidian vault, Proxmox homelab). Don't copy-paste them. Read through, steal the patterns that make sense, build your own.
 
 ## How Claude Code configuration works
 
@@ -21,34 +23,32 @@ Claude Code loads configuration from several layers:
 
 This repo mirrors my files from both layers.
 
-## Repository structure
+## What's in here
 
-### `global/` -- global Claude Code config
+### `global/` -- lives in `~/.claude/`
 
-Files that live in `~/.claude/` and apply to every conversation.
+**CLAUDE.md** -- the most impactful file. Working style, communication preferences, integration details. Claude reads it at the start of every conversation.
 
-**CLAUDE.md** -- global instructions: working style, communication preferences, integration details. This is the most impactful file. Claude reads it at the start of every conversation.
+**settings.json** -- permissions allowlist, hook configuration, status line, model preference.
 
-**settings.json** -- permissions allowlist (which tools Claude can run without asking), hook configuration, status line, model preference.
-
-**settings.local.json** -- machine-specific permission overrides. Kept separate so different machines can have different permissions without conflicting.
+**settings.local.json** -- machine-specific permission overrides. Separate file so different machines don't conflict.
 
 **statusline.sh** -- custom status bar showing git branch, task count, and other context.
 
 #### Skills (`global/skills/`)
 
-Skills are reusable capabilities that Claude can invoke with `/skillname`. Each has a `SKILL.md` with instructions and optional `references/` for supporting material.
+Skills are reusable capabilities Claude can invoke with `/skillname`. Each has a `SKILL.md` with instructions and optional `references/` for supporting material.
 
 | Skill | What it does |
 |-------|-------------|
-| **plan** | Structured spec-plan-do workflow that scales from tiny fixes to large projects |
-| **evaluate** | Session retrospective: reflect on what went well/wrong, improve instructions |
-| **skill-creator** | Meta-skill for creating new skills (includes validation scripts). From [anthropics/skills](https://github.com/anthropics/skills) |
+| **plan** | Structured spec-plan-do workflow, from tiny fixes to large projects |
+| **evaluate** | Session retrospective: what went well, what didn't, improve instructions |
+| **skill-creator** | Meta-skill for creating new skills. From [anthropics/skills](https://github.com/anthropics/skills) |
 | **review-text** | Writing review with style-aware feedback (Dutch + English) |
-| **review-docs** | Documentation health check: finds orphans, missing index entries, overgrown files |
-| **new-doc** | Files new documentation into the correct location with index updates |
+| **review-docs** | Documentation health check: orphans, missing index entries, overgrown files |
+| **new-doc** | Files new docs into the correct location with index updates |
 | **omarchy-skill** | Guards Hyprland/Omarchy config changes (version checks, safe editing) |
-| **remote-server** | Executes commands on a Proxmox server via SSH |
+| **remote-server** | Runs commands on a Proxmox server via SSH |
 
 #### Agents (`global/agents/`)
 
@@ -56,24 +56,24 @@ Agents are subprocesses Claude can delegate to. They run with their own context 
 
 | Agent | What it does |
 |-------|-------------|
-| **git-committer** | Autonomous git commit agent. Stages, diffs, writes commit messages, handles pre-commit hooks. Runs on a cheaper model (Haiku) to save cost. |
+| **git-committer** | Stages, diffs, writes commit messages, handles pre-commit hooks. Runs on Haiku to keep costs down. |
 
 #### Hooks (`global/hooks/`)
 
-Hooks are shell scripts that run on Claude Code events.
+Shell scripts that fire on Claude Code events.
 
 | Hook | Event | What it does |
 |------|-------|-------------|
-| **generate-dates.sh** | SessionStart | Injects today/yesterday/this week dates into conversation context |
-| **log-skill-usage.sh** | PostToolUse | Logs which skills are invoked and when |
+| **generate-dates.sh** | SessionStart | Injects today/yesterday/this week dates into context |
+| **log-skill-usage.sh** | PostToolUse | Logs skill invocations (to find unused skills) |
 
 ### `projects/` -- project-level examples
 
-These show how to set up project-specific configuration for different types of work.
+How I set up project-specific configuration for different types of work.
 
 #### `projects/planning/` -- GTD-style task management
 
-A personal planning workspace with commands for managing tasks and ideas.
+Personal planning workspace with commands for managing tasks and ideas.
 
 | Command | What it does |
 |---------|-------------|
@@ -85,30 +85,30 @@ A personal planning workspace with commands for managing tasks and ideas.
 
 #### `projects/vault-root/` -- multi-workspace routing
 
-Shows how to use a root CLAUDE.md as a router that redirects Claude to the correct subdirectory, plus a hook that warns when Claude starts in the wrong place.
+A root CLAUDE.md that acts as a router, redirecting Claude to the correct subdirectory. Plus a hook that warns when Claude starts in the wrong place.
 
 #### `projects/docs/` -- documentation workspace
 
-Minimal CLAUDE.md files that define documentation areas and domain-specific rules.
+Minimal CLAUDE.md files defining documentation areas and domain-specific rules.
 
 #### `projects/website/` -- publish workflow
 
-A single command (`/publish`) that commits changes, rsyncs to a server, and clears cache.
+A single command (`/publish`) that commits, rsyncs to a server, and clears cache.
 
 ## How I manage these files
 
-The global config lives in my dotfiles repo ([mystrap](https://github.com/opajanvv/janstrap)) and is deployed to `~/.claude/` via GNU Stow. Project-level files live in their respective project repos.
+The global config lives in my dotfiles repo ([mystrap](https://github.com/opajanvv/janstrap)) and is deployed to `~/.claude/` via GNU Stow. Project-level files live in their respective repos.
 
-This repo is a read-only mirror. The `sync.sh` script copies files from their source locations into this repo for publishing. Run it, review the diff, commit.
+This repo is a read-only mirror. `sync.sh` copies files from their source locations into this repo for publishing. Run it, review the diff, commit.
 
 ## Patterns worth stealing
 
-Even if the specifics don't apply to you, these patterns might be useful:
+The specifics won't apply to you, but these patterns might:
 
-- **CLAUDE.md as behavioral contract** -- not just "what the project is" but "how Claude should work here": communication style, what to avoid, when to ask vs. assume
-- **Skills for recurring workflows** -- the plan skill alone saves significant back-and-forth on every new piece of work
-- **Cheap subagents for mechanical tasks** -- the git-committer runs on Haiku, keeping costs down for routine commits
-- **Hooks for context injection** -- generating dates on session start means Claude always knows what day it is
-- **Multi-workspace routing** -- a root CLAUDE.md that says "you're in the wrong place, go here instead"
-- **Project commands for domain workflows** -- `/publish`, `/new-task`, `/process-inbox` encode the specific steps so Claude doesn't have to figure them out each time
-- **Dotfiles integration** -- treating Claude config as dotfiles means it's versioned, portable, and deployed automatically
+- **CLAUDE.md as behavioral contract** -- not just "what the project is" but "how Claude should work here"
+- **Skills for recurring workflows** -- the plan skill alone saves a lot of back-and-forth
+- **Cheap subagents for mechanical tasks** -- git-committer on Haiku, routine commits for pennies
+- **Hooks for context injection** -- Claude always knows what day it is
+- **Evaluate after significant work** -- a skill that reflects on what went well, what didn't, and feeds improvements back into your config. This is how the setup gets better over time.
+- **Multi-workspace routing** -- a root CLAUDE.md that says "wrong place, go here instead"
+- **Project commands for domain workflows** -- `/publish`, `/new-task` encode the steps so Claude doesn't have to figure them out each time
