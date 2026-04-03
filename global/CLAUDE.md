@@ -43,7 +43,7 @@ Each subdirectory has its own CLAUDE.md with specific instructions. Work in the 
 - **Mystrap**: `~/dev/mystrap` is the dotfiles repository. Uses stow, so scripts go in `dotfiles/shell/.local/bin/`. Skills live in `dotfiles/claude/.claude/skills/` and are tracked in this repo — commit skill changes via mystrap.
 - **Vault scripts**: `~/.local/bin/vault-*` scripts for scanning, cleanup, creating tasks, and TODAY.md generation
 - **Calendar**: `~/.local/bin/calendar-today` fetches Google Calendar events (see `llm-context/google-api.md`)
-- **Homelab**: use the `remote-server` skill for server operations; source configs in `~/dev/homelab-docker/`
+- **Homelab**: use the `homelab-admin` agent for server operations; source configs in `~/dev/homelab-docker/`
 
 ## Git commits
 - Never run git commit directly. Always use the auto-committer agent via the Task tool.
