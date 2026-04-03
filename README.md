@@ -48,7 +48,6 @@ Skills are reusable capabilities Claude can invoke with `/skillname`. Each has a
 | **review-docs** | Documentation health check: orphans, missing index entries, overgrown files |
 | **new-doc** | Files new docs into the correct location with index updates |
 | **omarchy-skill** | Guards Hyprland/Omarchy config changes (version checks, safe editing) |
-| **remote-server** | Runs commands on a Proxmox server via SSH |
 
 #### Agents (`global/agents/`)
 
@@ -57,6 +56,8 @@ Agents are subprocesses Claude can delegate to. They run with their own context 
 | Agent | What it does |
 |-------|-------------|
 | **git-committer** | Stages, diffs, writes commit messages, handles pre-commit hooks. Runs on Haiku to keep costs down. |
+| **android-builder** | Android app builds and deploys (Gradle, Compose, adb). Runs on Sonnet. |
+| **homelab-admin** | Runs commands on the Proxmox homelab server via SSH. Runs on Sonnet. |
 
 #### Hooks (`global/hooks/`)
 
