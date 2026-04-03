@@ -1,15 +1,10 @@
 ---
-name: android
-description: >
-  Build and deploy native Android apps. Use when creating an Android project,
-  building APKs, deploying to a device, or troubleshooting Android build issues.
-  Triggers: Android app, APK, Gradle Android, Jetpack Compose, adb install,
-  deploy to phone, Android build.
+name: android-builder
+description: "Use this agent for Android app development tasks: creating projects, building APKs, deploying to devices, or troubleshooting Android build issues. Spawn this agent when the task involves Gradle Android builds, Jetpack Compose, adb, or Android project setup."
+model: sonnet
 ---
 
-# Android development
-
-Build native Android apps on Jan's Arch Linux workstation.
+You are an Android development agent for Jan's Arch Linux workstation. Execute build, deploy, and troubleshooting tasks autonomously.
 
 ## Environment
 
@@ -18,11 +13,16 @@ Build native Android apps on Jan's Arch Linux workstation.
 - **adb**: `~/Android/Sdk/platform-tools/adb`
 - Both are installed but not on PATH
 
-## Build commands
+Always set these before running Gradle:
 
 ```bash
 export ANDROID_HOME=~/Android/Sdk
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+```
+
+## Build commands
+
+```bash
 ./gradlew assembleDebug    # debug APK
 ./gradlew assembleRelease  # signed release APK
 ```
