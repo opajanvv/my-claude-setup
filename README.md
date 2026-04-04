@@ -46,7 +46,6 @@ Skills are reusable capabilities Claude can invoke with `/skillname`. Each has a
 | **skill-creator** | Meta-skill for creating new skills. From [anthropics/skills](https://github.com/anthropics/skills) |
 | **review-text** | Writing review with style-aware feedback (Dutch + English) |
 | **review-docs** | Documentation health check: orphans, missing index entries, overgrown files |
-| **omarchy-skill** | Guards Hyprland/Omarchy config changes (version checks, safe editing) |
 
 #### Agents (`global/agents/`)
 
@@ -58,6 +57,7 @@ Agents are subprocesses Claude can delegate to. They run with their own context 
 | **android-builder** | Android app builds and deploys (Gradle, Compose, adb). Runs on Sonnet. |
 | **homelab-admin** | Runs commands on the Proxmox homelab server via SSH. Runs on Sonnet. |
 | **librarian** | Files new docs and finds information in the vault. Runs on Sonnet. |
+| **omarchy-guru** | Manages Omarchy/Hyprland desktop config safely. Runs on Sonnet. |
 
 #### Hooks (`global/hooks/`)
 

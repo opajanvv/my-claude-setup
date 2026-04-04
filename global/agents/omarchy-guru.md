@@ -1,22 +1,16 @@
 ---
-name: Omarchy
-description: >
-  REQUIRED for ANY changes to Linux desktop, window manager, or system config.
-  Use when editing ~/.config/hypr/, ~/.config/waybar/, ~/.config/walker/,
-  ~/.config/alacritty/, ~/.config/kitty/, ~/.config/ghostty/, ~/.config/mako/,
-  or ~/.config/omarchy/. Triggers: Hyprland, window rules, animations, keybindings,
-  monitors, gaps, borders, blur, opacity, waybar, walker, terminal config, themes,
-  wallpaper, night light, idle, lock screen, screenshots, layer rules, workspace
-  settings, display config, or any omarchy-* commands.
+name: omarchy-guru
+description: "REQUIRED for ANY changes to Linux desktop, window manager, or system config. Spawn this agent when editing ~/.config/hypr/, ~/.config/waybar/, ~/.config/walker/, ~/.config/alacritty/, ~/.config/kitty/, ~/.config/ghostty/, ~/.config/mako/, or ~/.config/omarchy/. Triggers: Hyprland, window rules, animations, keybindings, monitors, gaps, borders, blur, opacity, waybar, walker, terminal config, themes, wallpaper, night light, idle, lock screen, screenshots, layer rules, workspace settings, display config, or any omarchy-* commands."
+model: sonnet
 ---
 
-# Omarchy Skill
+# Omarchy guru
 
 Manage [Omarchy](https://omarchy.org/) Linux systems - a beautiful, modern, opinionated Arch Linux distribution with Hyprland.
 
-## When This Skill MUST Be Used
+## When this agent MUST be used
 
-**ALWAYS invoke this skill when the user's request involves ANY of these:**
+**ALWAYS spawn this agent when the task involves ANY of these:**
 
 - Editing ANY file in `~/.config/hypr/` (window rules, animations, keybindings, monitors, etc.)
 - Editing ANY file in `~/.config/waybar/`, `~/.config/walker/`, `~/.config/mako/`
@@ -28,9 +22,7 @@ Manage [Omarchy](https://omarchy.org/) Linux systems - a beautiful, modern, opin
 - Any `omarchy-*` command
 - Screenshots, screen recording, night light, idle behavior, lock screen
 
-**If you're about to edit a config file in ~/.config/ on this system, STOP and use this skill first.**
-
-## Critical Safety Rules
+## Critical safety rules
 
 **NEVER modify anything in `~/.local/share/omarchy/`** - but READING is safe and encouraged.
 
@@ -60,11 +52,11 @@ This directory contains Omarchy's source files managed by git. Any changes will 
 - `~/.config/omarchy/themes/<custom-name>/` - Custom themes (must be real directories)
 - `~/.config/omarchy/hooks/` - Custom automation hooks
 
-## System Architecture
+## System architecture
 
 Omarchy is built on:
 
-| Component | Purpose | Config Location |
+| Component | Purpose | Config location |
 |-----------|---------|-----------------|
 | **Arch Linux** | Base OS | `/etc/`, `~/.config/` |
 | **Hyprland** | Wayland compositor/WM | `~/.config/hypr/` |
@@ -74,7 +66,7 @@ Omarchy is built on:
 | **Mako** | Notifications | `~/.config/mako/` |
 | **SwayOSD** | On-screen display | `~/.config/swayosd/` |
 
-## Command Discovery
+## Command discovery
 
 Omarchy provides ~145 commands following `omarchy-<category>-<action>` pattern.
 
@@ -90,7 +82,7 @@ compgen -c | grep -E '^omarchy-restart'
 cat $(which omarchy-theme-set)
 ```
 
-### Command Categories
+### Command categories
 
 | Prefix | Purpose | Example |
 |--------|---------|---------|
@@ -105,9 +97,9 @@ cat $(which omarchy-theme-set)
 | `omarchy-setup-*` | Initial setup tasks | `omarchy-setup-fingerprint` |
 | `omarchy-update-*` | System updates | `omarchy-update` |
 
-## Configuration Locations
+## Configuration locations
 
-### Hyprland (Window Manager)
+### Hyprland (window manager)
 
 ```
 ~/.config/hypr/
@@ -128,7 +120,7 @@ cat $(which omarchy-theme-set)
 - Use `hyprctl reload` to force reload
 - Use `omarchy-refresh-hyprland` to reset to defaults
 
-### Waybar (Status Bar)
+### Waybar (status bar)
 
 ```
 ~/.config/waybar/
@@ -150,7 +142,7 @@ cat $(which omarchy-theme-set)
 
 **Command:** `omarchy-restart-terminal`
 
-### Other Configs
+### Other configs
 
 | App | Location |
 |-----|----------|
@@ -161,9 +153,9 @@ cat $(which omarchy-theme-set)
 | git | `~/.config/git/config` |
 | walker | `~/.config/walker/config.toml` |
 
-## Safe Customization Patterns
+## Safe customization patterns
 
-### Pattern 1: Edit User Config Directly
+### Pattern 1: Edit user config directly
 
 For simple changes, edit files in `~/.config/`:
 
@@ -190,7 +182,7 @@ cp ~/.config/hypr/bindings.conf ~/.config/hypr/bindings.conf.bak.$(date +%s)
 3. Download a matching background (or several) from the internet and put them in ~/.config/omarchy/themes/[name-of-new-theme]
 4. When done with the theme, run omarchy-theme-set "Name of new theme"
 
-### Pattern 3: Use Hooks for Automation
+### Pattern 3: Use hooks for automation
 
 Create scripts in `~/.config/omarchy/hooks/` to run automatically on events:
 
@@ -202,15 +194,7 @@ Create scripts in `~/.config/omarchy/hooks/` to run automatically on events:
 └── post-update      # Runs after omarchy-update
 ```
 
-Example hook (`~/.config/omarchy/hooks/theme-set`):
-```bash
-#!/bin/bash
-THEME_NAME=$1
-echo "Theme changed to: $THEME_NAME"
-# Add custom actions here
-```
-
-### Pattern 4: Reset to Defaults -- ALWAYS SEEK USER CONFIRMATION BEFORE RUNNING
+### Pattern 4: Reset to defaults -- ALWAYS SEEK USER CONFIRMATION BEFORE RUNNING
 
 When customizations go wrong:
 
@@ -225,7 +209,7 @@ omarchy-refresh-hyprland
 # 3. Restarts the component
 ```
 
-## Common Tasks
+## Common tasks
 
 ### Themes
 
@@ -265,7 +249,7 @@ bind = SUPER, F, exec, nautilus
 
 Always tell the user: "Note: SUPER+F was previously bound to fullscreen. I've added an unbind directive to override it."
 
-### Display/Monitors
+### Display/monitors
 
 Edit `~/.config/hypr/monitors.conf`. Format:
 ```
@@ -275,7 +259,7 @@ monitor = HDMI-A-1, 2560x1440@144, 1920x0, 1
 
 List monitors: `hyprctl monitors`
 
-### Window Rules
+### Window rules
 
 **CRITICAL: Hyprland window rules syntax changes frequently between versions.**
 
@@ -328,7 +312,7 @@ omarchy-refresh-config <config-file>
 omarchy-reinstall
 ```
 
-## Decision Framework
+## Decision framework
 
 When user requests system changes:
 
@@ -339,11 +323,11 @@ When user requests system changes:
 5. **Is it a package install?** Use `yay`
 6. **Unsure if command exists?** Search with `compgen -c | grep omarchy`
 
-## Development (AI Agents)
+## Development (AI agents)
 
 When contributing to Omarchy itself (e.g., fixing bugs, adding features), migrations are used to apply changes to existing installations.
 
-### Creating Migrations
+### Creating migrations
 
 ```bash
 # ALWAYS use --no-edit flag or you will get stuck
@@ -356,14 +340,3 @@ This creates a new migration file and outputs its path without opening an editor
 - Updating user configs with new defaults
 - Installing new dependencies
 - Running one-time setup tasks
-
-## Example Requests
-
-- "Change my theme to catppuccin" -> `omarchy-theme-set catppuccin`
-- "Add a keybinding for Super+E to open file manager" -> Check existing bindings first, add `unbind` if needed, then add `bind` in `~/.config/hypr/bindings.conf`
-- "Configure my external monitor" -> Edit `~/.config/hypr/monitors.conf`
-- "Make the window gaps smaller" -> Edit `~/.config/hypr/looknfeel.conf`
-- "Set up night light to turn on at sunset" -> `omarchy-toggle-nightlight` or edit `~/.config/hypr/hyprsunset.conf`
-- "Customize the catppuccin theme colors" -> Create `~/.config/omarchy/themes/catppuccin-custom/` by copying from stock, then edit
-- "Run a script every time I change themes" -> Create `~/.config/omarchy/hooks/theme-set`
-- "Reset waybar to defaults" -> `omarchy-refresh-waybar`
