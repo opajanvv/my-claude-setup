@@ -13,6 +13,7 @@ Personal website for Jan. Technical blog (English) and personal writing (Dutch) 
 - **Iterate small:** One feature at a time.
 - **Commit proactively:** When a feature is complete or a decision is made, commit and push immediately.
 - **Follow Grav conventions:** Use standard Grav patterns. Check docs before implementing.
+- **After updating `.gitignore`:** Run `git rm --cached <path>` on any already-tracked files that match new rules — `.gitignore` does not retroactively untrack files.
 
 ## Quick commands
 
@@ -61,6 +62,19 @@ description: Korte beschrijving voor SEO en previews.
 
 Inhoud in Markdown.
 ```
+
+### Translated post
+
+To translate an existing post (typically a krabbel to English/Esperanto):
+
+1. Create a new folder in the same section with a translated slug (e.g. `2025-10-02-versatile/`)
+2. In the translation's frontmatter, add `translation_of: /krabbels/YYYY-MM-DD-original-slug`
+3. Add reciprocal `translations` frontmatter to both posts:
+   - Original gets: `translations: [{path: /krabbels/YYYY-MM-DD-translated-slug, flag: '🇬🇧', label: English, lang: en}]`
+   - Translation gets: `translations: [{path: /krabbels/YYYY-MM-DD-original-slug, flag: '🇳🇱', label: Nederlands, lang: nl}]`
+   - Note: Grav routes for date-prefixed folders include the full date — always use the full folder name (e.g. `2025-10-12-24-hour-surveillance`, not `24-hour-surveillance`). Using bare slugs causes `page.find()` to silently return null and the link won't render.
+4. The translation won't appear in the blog listing but is fully published and crawlable
+5. For trilingual posts, each version lists the other two in its `translations` array; only the original omits `translation_of`
 
 ### Images in posts
 
@@ -118,6 +132,7 @@ Custom theme: `user/themes/opa/`
 - Localized date formatting (English/Dutch/Esperanto via partials/date.html.twig)
 - Lowercase UI, mixed case content
 - When adding full-width block elements after `.post-content`, include `clear: both` to clear floated images
+- **Skip links and visually-hidden elements:** Use the clip technique, not `left: -9999px`. Hidden: `position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0`. Visible on focus: `position: static; width: auto; height: auto; ...` etc.
 
 ### Key files
 

@@ -100,30 +100,15 @@ A single command (`/publish`) that commits, rsyncs to a server, and clears cache
 
 The global CLAUDE.md is deliberately small. It doesn't try to explain everything -- it just points Claude to an `llm-context/` folder with short summaries per topic. Claude reads only what's relevant to the current task.
 
-The folder looks like this:
+Most of the actual llm-context files are included in [`llm-context/`](llm-context/) so you can see the pattern in action. Start with [`index.md`](llm-context/index.md) -- it has a trigger table mapping keywords to files. When a conversation touches "homelab" or "Docker", Claude knows to read `homelab.md`. When it's about "Hyprland" or "keybindings", it loads `desktop.md`. No file is longer than a page or two.
 
-```
-llm-context/
-├── index.md              -- trigger table: which file to load when
-├── 3d-printing.md
-├── ai-infrastructure.md
-├── church.md
-├── claude-code.md
-├── commands.md
-├── desktop.md
-├── google-api.md
-├── homelab.md
-├── personal.md
-├── vault-structure.md
-├── workflow-principles.md
-└── writing-style.md
-```
-
-The `index.md` has a trigger table mapping keywords to files. When a conversation touches "homelab" or "Docker", Claude knows to read `homelab.md`. When it's about "Hyprland" or "keybindings", it loads `desktop.md`. No file is longer than a page or two.
+A few files with private content (personal details, church finances, API credentials) are excluded.
 
 These summaries in turn point to deeper documentation when needed. `homelab.md` links to detailed Proxmox configuration docs, service-specific pages, network diagrams. Claude follows those links only when the conversation actually goes that deep. Three layers: CLAUDE.md -> llm-context summary -> full documentation. Most conversations never get past the second.
 
 This keeps every conversation lightweight. Claude doesn't burn context on your 3D printer setup when you're asking about calendar integration.
+
+The docs layer is not included (private), but [`docs-structure.md`](docs-structure.md) shows the file tree so you can see how the third layer is organized.
 
 The whole llm-context idea comes from Teresa Torres' excellent writeup [Give Claude Code a memory](https://www.producttalk.org/give-claude-code-a-memory/). I took her concept and ran with it.
 

@@ -2,31 +2,6 @@
 
 Dit zijn voorbeelden van Jan's Nederlandse schrijfstijl. Gebruik ze om toon, zinsopbouw, humor en stem te begrijpen bij het reviewen van Nederlandse tekst.
 
----
-
-## Over-pagina
-
-Hallo, ik ben Jan van Veldhuizen.
-
-Van ponskaarten tot AI - zo zou je mijn loopbaan wel kunnen samenvatten. In de jaren zeventig studeerde ik wiskunde in Leiden, en ben toen verslingerd geraakt aan computers. Die studie is nooit afgemaakt, maar de computers zijn nooit meer uit mijn leven verdwenen.
-
-Ik vond een baan als programmeur, en zo werd mijn hobby mijn baan. De afgelopen ruim dertig jaar werkte ik als ontwikkelaar en software-architect bij Onguard en sinds april 2025 ben ik met pensioen. Terug van carriere naar hobby.
-
-De afgelopen jaren was ik online bekend als "PapaSmurf", mijn bijnaam op m'n werk. Maar met mijn pensioen heb ik die periode afgesloten. Ik ben Jan, "Opa Jan" voor mijn kleinkinderen.
-
-Thuis is er van alles geautomatiseerd, van lampen tot luxaflex. Ik heb een flinke computer staan waarop van alles draait, een "homelab", zoals dat in de hobbywereld heet. Ik experimenteer met van alles en blijf nieuwe programmeertalen leren. Ik volg de ontwikkelingen rond AI op de voet en geef daar zo nu en dan lezingen over.
-
-Daarnaast speel ik orgel in kerkdiensten en houd ik van vreemde talen. Ik kan urenlang bladeren in woordenboeken en grammatica's. Mijn belangstelling voor talen is een tikje wiskundig: ik houd meer van grammatica dan van literatuur of cultuur. Met mijn vrouw maak ik graag lange wandel- of fietstochten; zo fietsten we in 2022 van huis naar Santiago de Compostela.
-
-Over deze website: dit is uiteraard ook een hobbyproject, en hij draait vanzelfsprekend op mijn homelab thuis. Op mijn blog ben ik van plan om drie soorten stukjes te schrijven:
-
-- Allerlei tech-dingetjes (in het Engels)
-- Leuke of interessante dingen die ik vind op taalgebied (vaak in het Nederlands)
-- Af en toe een losse mijmering
-
-Het wordt dus een mix van Engels en Nederlands, en in een enkel geval zelfs Esperanto.
-
-Leuk dat je er bent, laat gerust iets van je horen.
 
 ---
 
@@ -91,3 +66,13 @@ Als relatiebeheerder weet je hoe belangrijk het is dat je je verdiept in je (pot
 Dan kijk je even naar hun profiel en denk je: hé, een gepensioneerde, die ga ik interesseren voor een pensioenregeling! Zijn bedrijf heet "Opa Jan's Homelab", dat is vast een bedrijf met veel werknemers.
 
 Briljant!
+
+---
+
+## LinkedIn post: (reactie op een post van Nick)
+
+Ik vrees dat Nick gelijk heeft. Gisteren nog liet ik een app schrijven en testen, en deployen op een server, en regelde Claude Code de DNS voor remote toegang, de authenticatie, en schreef alle technische documentatie. Een klein kwartiertje. One shot. Hartstikke gaaf natuurlijk, maar toch.
+Er blijft iets knagen. Na vijftig jaar zelf code schrijven en deployen is dit even slikken. Mijn trots is niet meer: 'kijk eens wat ik gemaakt heb', maar 'kijk eens hoe goed ik kan prompten'. Ik begon eerst nog alle code door te lezen, maar na een tiental regels dacht ik: nou, dat zit wel goed, ik geloof het verder wel. Want Claude Code had natuurlijk Python gebruikt en laat dat nu net één van de weinige talen zijn die ik niet vloeiend spreek.
+In de periode voor mijn pensioen heb ik geregeld gedacht: het lijkt me aardig om Python te gaan leren als ik straks thuis zit. Maar wat heeft dat nog voor zin? Ik heb ook nog twee boeken op m'n bureau liggen. 'Seven Languages in Seven Weeks' en 'Seven more Languages in Seven Weeks'. Twee boeken over wat minder bekende programmeertalen. Zinloos. Kan ik de kachel mee aanmaken.
+
+En ja, morgen prompt ik weer vrolijk verder. Maar dit wilde ik even gezegd hebben.

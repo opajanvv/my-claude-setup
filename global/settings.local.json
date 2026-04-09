@@ -20,7 +20,8 @@
       "Read(//usr/lib/**)",
       "Bash(pacman -Qe)",
       "Bash(pacman -Qi yay aether asdcontrol makima-bin terminaltexteffects-git fcitx5 fcitx5-gtk fcitx5-qt)",
-      "Bash(pacman -Qi fprintd pam-u2f libfido2)"
+      "Bash(pacman -Qi fprintd pam-u2f libfido2)",
+      "Bash(ssh jan@server:*)"
     ]
   }
 }
