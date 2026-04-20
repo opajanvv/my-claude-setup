@@ -114,6 +114,5 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "model": "opus"
+  "skipDangerousModePermissionPrompt": true
 }

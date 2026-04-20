@@ -10,7 +10,7 @@ Projects, tasks, and ideas. The workbench where work gets planned and tracked.
 - `tasks/active/` - Things being worked on
 - `.archive/` - Soft-deleted items (auto-purged after 4 weeks)
 - `templates/` - Obsidian templates for tasks, ideas, projects
-- `TODAY.md` - Daily overview (generated, not edited manually). Sections: hard landscape (calendar only), needs attention (overdue + due today + high priority + stalled projects), focus project, available (start date passed but not due soon), this week (due soon with day names), backlog (medium priority standalone), active projects (with WIP warning if > 3 active), consider (random idea)
+- `TODAY.md` - Daily overview (generated, not edited manually). Sections: hard landscape (calendar only), needs attention (overdue + due today + due tomorrow + high priority + stalled projects), focus project, this week (due soon with day names, excludes tomorrow), suggested today (top picks from available), available (start date passed but not due soon), backlog (medium priority standalone), active projects (with WIP warning if > 3 active), consider (random idea)
 
 **Three tiers:** Task = do it, done. Project = multi-step, committed. Idea = uncommitted possibility.
 

@@ -21,7 +21,19 @@
       "Bash(pacman -Qe)",
       "Bash(pacman -Qi yay aether asdcontrol makima-bin terminaltexteffects-git fcitx5 fcitx5-gtk fcitx5-qt)",
       "Bash(pacman -Qi fprintd pam-u2f libfido2)",
-      "Bash(ssh jan@server:*)"
+      "Bash(ssh jan@server:*)",
+      "Bash(sudo pacman:*)",
+      "Bash(wait)",
+      "Bash(jobs)",
+      "Bash(pacman:*)",
+      "Bash(git config:*)",
+      "Bash(echo \"---exit: $?\")",
+      "Bash(ssh:*)",
+      "Bash(./scripts/setup_cloud.sh *)",
+      "Bash(journalctl --user -u swaybg --since \"3 hours ago\" --no-pager)",
+      "Bash(journalctl --user -u hypridle --since \"1 hour ago\" --no-pager)",
+      "Bash(journalctl --user --since \"3 hours ago\" --no-pager)",
+      "Bash(journalctl --user --since \"today\" --no-pager)"
     ]
   }
 }
