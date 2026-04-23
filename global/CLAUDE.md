@@ -39,6 +39,26 @@ Most work happens in `~/Cloud/janvv/life/` with separate workspaces:
 
 Each subdirectory has its own CLAUDE.md with specific instructions. Work in the appropriate folder.
 
+## CLAUDE.md map
+
+At session start, identify where the work belongs. If the task fits a specific project below, refuse and say: "This belongs in `<path>` — exit this session and open Claude Code there first."
+
+| Path | Purpose |
+|---|---|
+| `~/Cloud/janvv/life/planning/` | Daily work, tasks, projects, ideas |
+| `~/Cloud/janvv/life/docs/` | Technical documentation |
+| `~/Cloud/janvv/life/docs/homelab/` | Homelab-specific docs |
+| `~/Cloud/janvv/levensverhaal/` | Levensverhaal Probus presentation |
+| `~/Cloud/janvv/Documents/route-retraite/` | Route retraite project |
+| `~/dev/mystrap/` | Dotfiles and bootstrap system (stow) |
+| `~/dev/janvv.nl/` | Personal website (Grav CMS, opa.janvv.nl) |
+| `~/dev/penningmeester/` | Church treasurer app (Dutch) |
+| `~/dev/probus/` | Probus name-learning Android app |
+| `~/dev/homelab-docker/buikpijn-logboek/` | Food/pain tracker Flask app |
+| `~/dev/homelab-lxc-base/` | LXC container bootstrap scripts |
+| `~/dev/opajan-setup/` | opajan server setup |
+| `~/dev/my-claude-setup/` | Source backups of all CLAUDE.md files |
+
 ## External integrations
 - **Mystrap**: `~/dev/mystrap` is the dotfiles repository. Uses stow, so scripts go in `dotfiles/shell/.local/bin/`. Skills live in `dotfiles/claude/.claude/skills/` and are tracked in this repo — commit skill changes via mystrap.
 - **Vault scripts**: `~/.local/bin/vault-*` scripts for scanning, cleanup, creating tasks, and TODAY.md generation

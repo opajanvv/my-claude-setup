@@ -58,6 +58,7 @@ Agents are subprocesses Claude can delegate to. They run with their own context 
 | **homelab-admin** | Runs commands on the Proxmox homelab server via SSH. Runs on Sonnet. |
 | **librarian** | Files new docs and finds information in the vault. Runs on Sonnet. |
 | **omarchy-guru** | Manages Omarchy/Hyprland desktop config safely. Runs on Sonnet. |
+| **inbox-processor** | Triages the planning inbox, handles stale tasks, preps weekly planning checkpoint. Runs on Haiku. |
 
 #### Hooks (`global/hooks/`)
 

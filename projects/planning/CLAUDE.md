@@ -31,6 +31,8 @@ For detailed frontmatter formats and processing rules, see `../llm-context/vault
 - When documenting facts about Jan, stick to what Jan stated. Don't infer motivations or narratives from job titles or timelines.
 - When walking Jan through a checklist interactively, present each item and wait for completion. Don't offer to skip items or suggest alternatives unless there's a genuine blocker — assume Jan intends to complete the work.
 - For church treasury tasks: llm-context/church.md has orientation; ~/dev/penningmeester/ is ground truth for step-by-step workflows. Read it before writing workflow content.
+- When searching for a project by keyword and nothing is found, list all files in `projects/` before reporting "not found" — project names use English slugs that may not match the Dutch term Jan used.
+- When an overdue task has a `project:` field or mentions a linked project in its notes, check that project before flagging it as overdue — the work may have been captured there and the task is effectively done.
 
 ## Tracking progress
 
