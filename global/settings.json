@@ -86,6 +86,7 @@
     ],
     "defaultMode": "default"
   },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -114,5 +115,6 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim"
 }

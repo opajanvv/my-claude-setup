@@ -89,6 +89,17 @@ user/pages/02.tech/2025-12-16-my-post/
 
 Reference in Markdown: `![Alt text](screenshot.png)`
 
+## Homelab docs (generated)
+
+The `user/pages/10.homelab/` subtree is **generated** from the Obsidian vault at `~/Cloud/janvv/life/docs/homelab/`. Every `docs.md` in that subtree has `generated: true` in its frontmatter — do not hand-edit these files, edit the vault source instead.
+
+- **Source of truth:** `~/Cloud/janvv/life/docs/homelab/`
+- **Sync script:** `sync-homelab-to-grav` (in `~/dev/mystrap/dotfiles/shell/.local/bin/`)
+- **Mapping:** `infrastructure/` → `01.infrastructure`, `services/` → `02.services`, `how-to/` → `03.how-to`. Skips `templates/`, `troubleshooting/`, `CLAUDE.md`.
+- **Auto-run:** `publish.sh` runs the sync as its first step, so deploys are always in sync with the vault.
+
+**Workflow:** before committing content changes, run `sync-homelab-to-grav` to surface any vault drift. That way a single commit captures everything, rather than leaving a follow-up "sync" commit after `publish.sh`.
+
 ## Site structure
 
 ```

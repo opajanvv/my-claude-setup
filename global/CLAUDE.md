@@ -54,7 +54,6 @@ At session start, identify where the work belongs. If the task fits a specific p
 | `~/dev/janvv.nl/` | Personal website (Grav CMS, opa.janvv.nl) |
 | `~/dev/penningmeester/` | Church treasurer app (Dutch) |
 | `~/dev/probus/` | Probus name-learning Android app |
-| `~/dev/homelab-docker/buikpijn-logboek/` | Food/pain tracker Flask app |
 | `~/dev/homelab-lxc-base/` | LXC container bootstrap scripts |
 | `~/dev/opajan-setup/` | opajan server setup |
 | `~/dev/my-claude-setup/` | Source backups of all CLAUDE.md files |

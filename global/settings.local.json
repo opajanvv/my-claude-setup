@@ -33,7 +33,11 @@
       "Bash(journalctl --user -u swaybg --since \"3 hours ago\" --no-pager)",
       "Bash(journalctl --user -u hypridle --since \"1 hour ago\" --no-pager)",
       "Bash(journalctl --user --since \"3 hours ago\" --no-pager)",
-      "Bash(journalctl --user --since \"today\" --no-pager)"
+      "Bash(journalctl --user --since \"today\" --no-pager)",
+      "Bash(ps -eo pid,pcpu,pmem,comm --sort=-pcpu)",
+      "Bash(sensors)",
+      "Bash(ps -p 2109193 -o pid,pcpu,pmem,cmd --no-headers)",
+      "Bash(ps -p 2109193 -o cmd --no-headers)"
     ]
   }
 }

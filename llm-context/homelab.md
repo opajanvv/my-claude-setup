@@ -14,4 +14,8 @@ For any homelab work (servers, Docker, Proxmox, networking, services, backups), 
 - The host repo at `/home/jan/homelab-docker` is bind-mounted into all LXCs at `/opt/homelab-docker`. Config changes are deployed via git push + pull (no per-container sync).
 - The server repo has `core.sharedRepository=world` so git pull creates world-readable files.
 
+## Published to opa.janvv.nl
+
+The homelab docs are also published on the personal website at `https://opa.janvv.nl/homelab`. The Grav pages at `~/dev/janvv.nl/user/pages/10.homelab/` are **generated** from the vault by `sync-homelab-to-grav` (in `~/dev/mystrap/dotfiles/shell/.local/bin/`). The site's `publish.sh` runs the sync automatically before deploying. Never hand-edit files under `10.homelab/` — edit the vault source.
+
 Do not rely on this file for specifics. Always read the docs.

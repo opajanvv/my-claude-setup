@@ -14,8 +14,29 @@ Run `planning-scan` via Bash to get planning status as JSON. This gives an overv
 
 If `inbox.count` > 0 from the scan:
 
+#### 2a. Overview and deduplication
+
 1. Give a short overview: "Inbox has X items to process"
-2. For each item in `inbox.items` (one at a time):
+2. Read ALL inbox items first. Don't process individually yet.
+3. Scan for:
+   - **Duplicates**: same URL, same action, same topic. Flag for merge or delete.
+   - **Combinable items**: related topics that could be one task. Flag for combining.
+4. Present findings to Jan: "Found X duplicates and Y combinable items." Handle each with Jan:
+   - Duplicates: keep the best version, delete or merge the rest
+   - Combinable: merge into a single task with combined notes
+5. Apply Jan's decisions immediately (merge content, delete files, update frontmatter).
+
+#### 2b. Two-minute filter
+
+1. From the remaining (deduplicated) items, identify any that can be done in ≤2 minutes.
+   Two-minute signals: a quick lookup, a simple reply, a single click action, a tiny config change, reading a short article, a quick file copy/move.
+2. Show the list: "X items look like two-minute tasks. I'll set these aside and we'll do them at the end."
+3. Keep them in inbox for now. Do NOT process them through the normal flow.
+4. Confirm the split with Jan before proceeding.
+
+#### 2c. Process remaining items
+
+For each remaining item (one at a time):
    - Read the full file content (note: Braintoss items may arrive as raw text without frontmatter - this is normal, add proper frontmatter during processing)
    - Present the item to the user and determine:
      - Is the task clear or does it need clarification?
@@ -25,7 +46,18 @@ If `inbox.count` > 0 from the scan:
    - Make changes immediately (update status, move file, or delete)
    - Confirm the action before moving to the next item
 
-3. After all items are processed, summarize what was done.
+After all remaining items are processed, summarize what was done.
+
+#### 2d. Two-minute tasks
+
+1. Announce: "Now the two-minute tasks. I'll present them one at a time."
+2. For each two-minute task (one at a time):
+   - Present the task clearly
+   - Ask Jan to do it now (or skip/defer)
+   - Wait for confirmation before moving to the next
+   - If done: mark as completed, set status: done
+   - If skipped: process it through the normal flow (step 2c logic)
+3. After all two-minute tasks are handled, summarize.
 
 If inbox is empty, note this and move to focus selection.
 
