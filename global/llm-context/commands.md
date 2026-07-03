@@ -13,13 +13,10 @@ Skills are available globally in any Claude Code session. Core skills live in `~
 |-------|-------------|
 | `/plan` | Before starting complex work — think through the approach first |
 | `/review-text` | Reviewing/proofing written text (Dutch or English), in Jan's voice |
-| `/review-docs` | Audit docs structure for broken refs, missing index entries, overgrown files |
 | `/evaluate` | Reflect on completed work and improve instructions |
 | `md-to-pdf` | Convert a .md to PDF (python-markdown + WeasyPrint) |
 | `skill-creator` | Create or update a Claude Code skill |
 | `wiki-contribute` | Add source material to the shared Hermes/Claude wiki (`raw/` + `[KANBAN]` draft) |
-| `wiki-lint` | Check shared-wiki health (stale refs, orphans, missing cross-links) |
-| `webapp` | Work on the lichtbron-admin penningmeester webapp |
 
 ## Agents
 

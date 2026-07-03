@@ -10,14 +10,14 @@ pointers into the wiki. Read only what's relevant to the current task.
 
 | Context | Triggers | Where |
 |---------|----------|-------|
-| Personal | who is Jan, background, preferences, family, career | `personal/` (jan-van-veldhuizen, interests) |
+| Personal | who is Jan, background, preferences, family, career | `personal/` (entities/jan-van-veldhuizen, concepts/interests) |
 | Writing style | blog, LinkedIn, voice, tone, write for Jan, style | `personal/concepts/writing-style` |
 | Homelab | servers, Docker, Proxmox, networking, SSH, services | `tech/` (start at `tech/index.md`) |
 | Desktop | Hyprland, Omarchy, keybindings, wallpapers, mystrap scripts | `tech/concepts/desktop-setup` |
 | AI infrastructure | Ollama, models, LLM, AI tooling | `tech/concepts/ai-infrastructure` |
 | Cloud sync | rclone, FUSE mount, ~/Cloud sync, Dropbox, ~/Dropbox/GDrive, OAuth token expired | `tech/concepts/cloud-sync` |
 | Google APIs | calendar, OAuth, credentials, calendar-today | `tech/concepts/google-api-access` |
-| 3D printing | printer, slicer, OrcaSlicer, filament, prints | `tech` (3d-printing-setup, orcaslicer-lan-discovery) |
+| 3D printing | printer, slicer, OrcaSlicer, filament, prints | `tech` (entities/3d-printing-setup, concepts/orcaslicer-lan-discovery) |
 | Church | treasurer, penningmeester, communication workgroup, kerk | `penningmeester/` (Dutch) |
 
 ### Local Claude-meta files (not migrated)

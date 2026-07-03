@@ -4,7 +4,7 @@ My personal [Claude Code](https://docs.anthropic.com/en/docs/claude-code) config
 
 Yes, this is a lot of config for a retired guy with no business to run. But I spent about 50 years in software, and now that I don't have to build things, I get to tinker with AI for fun. Turns out you can sink just as many hours into configuring your tools as into actually using them.
 
-> **Not a template.** These files are tailored to my setup (Arch Linux, Hyprland, Obsidian vault, Proxmox homelab). Don't copy-paste them. Read through, steal the patterns that make sense, build your own.
+> **Not a template.** These files are tailored to my setup (Arch Linux, Hyprland, Proxmox homelab). Don't copy-paste them. Read through, steal the patterns that make sense, build your own.
 
 ## How Claude Code configuration works
 
@@ -47,7 +47,6 @@ Skills are reusable capabilities Claude can invoke with `/skillname`. Each has a
 | **review-text** | Writing review with style-aware feedback (Dutch + English) |
 | **md-to-pdf** | Convert a Markdown file to PDF via python-markdown + WeasyPrint |
 | **wiki-contribute** | Drop source material into a shared knowledge wiki for another agent to ingest |
-| **webapp** | Project-specific support skill for a side-project webapp (Dutch) |
 
 #### Agents (`global/agents/`)
 
@@ -89,7 +88,7 @@ The whole llm-context idea comes from Teresa Torres' excellent writeup [Give Cla
 
 ## How I manage these files
 
-The global config lives in my dotfiles repo ([mystrap](https://github.com/opajanvv/janstrap)) and is deployed to `~/.claude/` via GNU Stow. Project-level files live in their respective repos.
+The global config lives in my dotfiles repo ([mystrap](https://github.com/opajanvv/mystrap)) and is deployed to `~/.claude/` via GNU Stow. Project-level files live in their respective repos.
 
 This repo is a read-only mirror. `sync.sh` copies files from their source locations into this repo for publishing. Run it, review the diff, commit.
 

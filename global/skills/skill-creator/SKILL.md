@@ -259,12 +259,17 @@ At this point, it is time to actually create the skill.
 
 Skip this step only if the skill being developed already exists, and iteration or packaging is needed. In this case, continue to the next step.
 
+**Where skills live (Jan's setup):**
+
+- Personal skills: create in `~/dev/mystrap/dotfiles/claude/.claude/skills/<skill-name>/`, then run `~/dev/mystrap/scripts/install_dotfiles.sh` so stow symlinks it into `~/.claude/skills/`. Never create directly in `~/.claude/skills/` — that bypasses the mystrap repo and the skill won't be tracked or synced.
+- Project skills: create in `<project>/.claude/skills/<skill-name>/`.
+
 When creating a new skill from scratch, always run the `init_skill.py` script. The script conveniently generates a new template skill directory that automatically includes everything a skill requires, making the skill creation process much more efficient and reliable.
 
 Usage:
 
 ```bash
-scripts/init_skill.py <skill-name> --path <output-directory>
+~/.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-directory>
 ```
 
 The script:
@@ -322,7 +327,7 @@ Write instructions for using the skill and its bundled resources.
 Once development of the skill is complete, validate it to ensure it meets all requirements:
 
 ```bash
-scripts/quick_validate.py <path/to/skill-folder>
+~/.claude/skills/skill-creator/scripts/quick_validate.py <path/to/skill-folder>
 ```
 
 The validation checks:
@@ -336,15 +341,7 @@ Fix any validation errors and run the command again.
 
 Do NOT run `package_skill.py`. Skills are installed directly from the skill directory; packaging into a .skill file is not needed.
 
-### Step 6: Update the inventory
-
-Run `claude-inventory` to regenerate `~/Cloud/janvv/life/claude-overview.md` with the new skill/agent/command/hook included.
-
-```bash
-claude-inventory
-```
-
-### Step 7: Iterate
+### Step 6: Iterate
 
 After testing the skill, users may request improvements. Often this happens right after using the skill, with fresh context of how the skill performed.
 

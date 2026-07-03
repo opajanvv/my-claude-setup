@@ -5,18 +5,9 @@
   },
   "permissions": {
     "allow": [
-      "Skill(cleanup-downloads)",
-      "Skill(commit-and-push)",
       "Skill(evaluate)",
       "Skill(plan)",
       "Skill(review-text)",
-      "Skill(new-task)",
-      "Skill(new-idea)",
-      "Skill(done)",
-      "Skill(wrap-up)",
-      "Skill(morning)",
-      "Skill(process-inbox)",
-      "Skill(today)",
       "Bash(gh auth status:*)",
       "Bash(gh repo create:*)",
       "Bash(git init:*)",
@@ -35,11 +26,6 @@
       "Bash(git remote:*)",
       "Bash(git stash:*)",
       "Bash(git tag:*)",
-      "Bash(git -C /home/jan/Obsidian/life status)",
-      "Bash(git -C /home/jan/Obsidian/life diff)",
-      "Bash(git -C /home/jan/Obsidian/life add:*)",
-      "Bash(git -C /home/jan/Obsidian/life commit -m \"$\\(cat <<''EOF''\nAdd idea: implement Claude Code safety rules\nEOF\n\\)\")",
-      "Bash(git -C /home/jan/Obsidian/life push)",
       "Bash(~/.local/bin/calendar-today:*)",
       "WebFetch(domain:tasks.janvv.nl)",
       "Bash(python3:*)",
@@ -58,22 +44,15 @@
       "Bash(for:*)",
       "Bash(do mv \"$f\" ../blog/)",
       "Bash(done)",
-      "Bash(gemini -p \"@ideas/blog/ Read all the Dutch language blog post ideas \\(the ones about language observations, word play, grammar, etc.\\) and categorize them by theme. List which files belong to each theme.\")",
       "Bash(readlink:*)",
-      "Write(TODAY.md)",
       "Bash(git restore:*)",
       "Bash(git rm:*)",
-      "Bash(git -C /home/jan/Obsidian/life log --oneline -20)",
-      "Bash(git -C /home/jan/Obsidian/life diff HEAD~2)",
-      "Bash(git -C /home/jan/Obsidian/life log --format=\"%s%n%b\" -2)",
       "Bash(pgrep:*)",
       "Bash(mount:*)",
       "Bash(crontab:*)",
       "Bash(systemctl list-timers:*)",
       "Bash(systemctl:*)",
       "Bash(sudo sed:*)",
-      "Bash(git -C /home/jan/Obsidian/life log --format=\"%s%n%b\" -5)",
-      "Bash(git -C /home/jan/Obsidian/life diff HEAD~5)",
       "Bash(git -C /home/jan/dev/mystrap/dotfiles/claude log --oneline -10)",
       "WebFetch(domain:obsidian.md)",
       "WebFetch(domain:github.com)",
@@ -82,7 +61,6 @@
     ],
     "defaultMode": "default"
   },
-  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
@@ -114,5 +92,6 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "editorMode": "normal"
+  "editorMode": "normal",
+  "model": "claude-fable-5[1m]"
 }

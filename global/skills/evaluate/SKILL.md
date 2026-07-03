@@ -30,7 +30,7 @@ If in a git repository, use a sub-agent to gather evidence:
 ```
 Task(
   description: "Analyze session for improvements",
-  subagent_type: "Bash",
+  subagent_type: "general-purpose",
   prompt: "Run git log --oneline -20 and git diff HEAD~N (estimate N from session commits). Look for: mistakes (fix commits, reverts, multiple attempts), patterns worth documenting, friction points: [insert friction from step 1]. Return a list of findings and suggested improvements with rationale."
 )
 ```
@@ -48,8 +48,8 @@ Improvement targets include:
 - Global instructions (`~/.claude/CLAUDE.md`)
 - Project instructions (`./CLAUDE.md`)
 - Commands (`~/.claude/commands/` or project commands) that were used and had issues
-- Skills (`~/.claude/skills/`) that were used and could work better
-- LLM context files (`~/Cloud/janvv/life/llm-context/`) -- suggest additions when Claude lacked project/domain knowledge that should be documented
+- Skills that were used and could work better -- edit the source in `~/dev/mystrap/dotfiles/claude/.claude/skills/` (the files under `~/.claude/skills/` are stow symlinks), project skills in `<project>/.claude/skills/`
+- LLM context routing (`~/.claude/llm-context/`) -- for missing project/domain knowledge, suggest adding it to the shared wiki via the `wiki-contribute` skill
 
 If nothing to improve, acknowledge the session went smoothly.
 

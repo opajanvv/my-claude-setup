@@ -7,7 +7,7 @@ Personal website for Jan. Technical blog (English) and personal writing (Dutch) 
 
 ## What to work on
 
-Check `next-post.md` for the post currently being written. When it's empty, pick an idea from the planning vault at `~/Cloud/janvv/life/planning/ideas/blog/`, mark it done there, and move it into `next-post.md`.
+Check `next-post.md` for the post currently being written. When it's empty, ask Jan for the next blog idea (blog ideas live in Hermes' planning; Jan or Claude can request them via a Gmail draft to jan@janvv.nl with subject prefix `[KANBAN]`). Put the chosen idea in `next-post.md`.
 
 ## Development principles
 
