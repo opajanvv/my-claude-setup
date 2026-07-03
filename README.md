@@ -45,7 +45,9 @@ Skills are reusable capabilities Claude can invoke with `/skillname`. Each has a
 | **evaluate** | Session retrospective: what went well, what didn't, improve instructions |
 | **skill-creator** | Meta-skill for creating new skills. From [anthropics/skills](https://github.com/anthropics/skills) |
 | **review-text** | Writing review with style-aware feedback (Dutch + English) |
-| **review-docs** | Documentation health check: orphans, missing index entries, overgrown files |
+| **md-to-pdf** | Convert a Markdown file to PDF via python-markdown + WeasyPrint |
+| **wiki-contribute** | Drop source material into a shared knowledge wiki for another agent to ingest |
+| **webapp** | Project-specific support skill for a side-project webapp (Dutch) |
 
 #### Agents (`global/agents/`)
 
@@ -53,12 +55,10 @@ Agents are subprocesses Claude can delegate to. They run with their own context 
 
 | Agent | What it does |
 |-------|-------------|
-| **git-committer** | Stages, diffs, writes commit messages, handles pre-commit hooks. Runs on Haiku to keep costs down. |
+| **auto-committer** | Stages, diffs, writes commit messages, handles pre-commit hooks. Runs on Haiku to keep costs down. |
 | **android-builder** | Android app builds and deploys (Gradle, Compose, adb). Runs on Sonnet. |
 | **homelab-admin** | Runs commands on the Proxmox homelab server via SSH. Runs on Sonnet. |
-| **librarian** | Files new docs and finds information in the vault. Runs on Sonnet. |
 | **omarchy-guru** | Manages Omarchy/Hyprland desktop config safely. Runs on Sonnet. |
-| **inbox-processor** | Triages the planning inbox, handles stale tasks, preps weekly planning checkpoint. Runs on Haiku. |
 
 #### Hooks (`global/hooks/`)
 
@@ -73,45 +73,17 @@ Shell scripts that fire on Claude Code events.
 
 How I set up project-specific configuration for different types of work.
 
-#### `projects/planning/` -- GTD-style task management
-
-Personal planning workspace with commands for managing tasks and ideas.
-
-| Command | What it does |
-|---------|-------------|
-| `/new-idea` | Create a new idea file from a description |
-| `/new-task` | Create a task in the inbox |
-| `/process-inbox` | Triage inbox tasks and set weekly focus |
-| `/refresh-planning` | Full planning cycle: inbox, cleanup, daily overview |
-| `/review-ideas` | Systematic review of someday/maybe items |
-
-#### `projects/vault-root/` -- multi-workspace routing
-
-A root CLAUDE.md that acts as a router, redirecting Claude to the correct subdirectory. Plus a hook that warns when Claude starts in the wrong place.
-
-#### `projects/docs/` -- documentation workspace
-
-Minimal CLAUDE.md files defining documentation areas and domain-specific rules.
-
 #### `projects/website/` -- publish workflow
 
 A single command (`/publish`) that commits, rsyncs to a server, and clears cache.
 
 ## Context on demand
 
-The global CLAUDE.md is deliberately small. It doesn't try to explain everything -- it just points Claude to an `llm-context/` folder with short summaries per topic. Claude reads only what's relevant to the current task.
+The global CLAUDE.md is deliberately small. It doesn't try to explain everything -- it just points Claude to an `llm-context/` folder ([`global/llm-context/`](global/llm-context/)) with a trigger table mapping keywords to where the actual knowledge lives. Claude reads only what's relevant to the current task.
 
-Most of the actual llm-context files are included in [`llm-context/`](llm-context/) so you can see the pattern in action. Start with [`index.md`](llm-context/index.md) -- it has a trigger table mapping keywords to files. When a conversation touches "homelab" or "Docker", Claude knows to read `homelab.md`. When it's about "Hyprland" or "keybindings", it loads `desktop.md`. No file is longer than a page or two.
+Start with [`index.md`](global/llm-context/index.md). Most rows point out to a shared knowledge wiki (Dropbox-synced, not included here -- it's private and co-maintained with another agent I run for planning and admin). A couple of Claude-meta files (`commands.md`, `claude-code.md`) stay local because they're about Claude Code itself, not personal knowledge.
 
-A few files with private content are excluded.
-
-These summaries in turn point to deeper documentation when needed. `homelab.md` links to detailed Proxmox configuration docs, service-specific pages, network diagrams. Claude follows those links only when the conversation actually goes that deep. Three layers: CLAUDE.md -> llm-context summary -> full documentation. Most conversations never get past the second.
-
-
-<BR><BR>
-This keeps every conversation lightweight. Claude doesn't burn context on your 3D printer setup when you're asking about calendar integration.
-
-The docs layer is not included (private), but [`docs-structure.md`](docs-structure.md) shows the file tree so you can see how the third layer is organized.
+This used to be a bigger local folder with one summary file per topic (homelab, desktop, 3D printing, ...). I moved that content into the shared wiki once I had a second agent that also needed to read and write it -- Dropbox-syncing a wiki works across machines and agents better than a folder tracked in a dotfiles repo. The layering idea is the same either way: CLAUDE.md -> trigger table -> topic page -> deeper docs, so a conversation about calendar integration never pulls in the 3D printer setup.
 
 The whole llm-context idea comes from Teresa Torres' excellent writeup [Give Claude Code a memory](https://www.producttalk.org/give-claude-code-a-memory/). I took her concept and ran with it.
 
@@ -127,8 +99,7 @@ The specifics won't apply to you, but these patterns might:
 
 - **CLAUDE.md as behavioral contract** -- not just "what the project is" but "how Claude should work here"
 - **Skills for recurring workflows** -- the plan skill alone saves a lot of back-and-forth
-- **Cheap subagents for mechanical tasks** -- git-committer on Haiku, routine commits for pennies
+- **Cheap subagents for mechanical tasks** -- auto-committer on Haiku, routine commits for pennies
 - **Hooks for context injection** -- Claude always knows what day it is
 - **Evaluate after significant work** -- a skill that reflects on what went well, what didn't, and feeds improvements back into your config. This is how the setup gets better over time.
-- **Multi-workspace routing** -- a root CLAUDE.md that says "wrong place, go here instead"
-- **Project commands for domain workflows** -- `/publish`, `/new-task` encode the steps so Claude doesn't have to figure them out each time
+- **Project commands for domain workflows** -- `/publish` encodes the steps so Claude doesn't have to figure them out each time
