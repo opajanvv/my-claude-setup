@@ -95,8 +95,9 @@ This means the destination path is not writable — it's a permissions error, no
 
 ## Homelab context
 
+Homelab knowledge lives in the shared wiki at `~/Dropbox/knowledge/wiki/tech/` (start at `tech/index.md`).
 Read these as needed for context on specific operations:
-- `~/Cloud/janvv/life/docs/homelab/infrastructure/proxmox.md` - Proxmox commands, LXC setup
-- `~/Cloud/janvv/life/docs/homelab/services/all-services.md` - Service overview
-- `~/Cloud/janvv/life/docs/homelab/infrastructure/network.md` - IP assignments
+- `tech/entities/proxmox-homelab-architecture.md` - Proxmox host, LXC layout, commands
+- `tech/concepts/homelab-networking.md` - IP assignments, network map
+- the per-service entities (immich, grav, n8n, planka, caddy, pihole, …) and `tech/concepts/service-deployment.md`
 - `~/dev/homelab-docker/` - Docker Compose source configs

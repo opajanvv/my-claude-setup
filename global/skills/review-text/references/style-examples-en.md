@@ -67,3 +67,15 @@ As a private Claude Code user, I don't need to think about syncing with team mem
 Everything is on GitHub, so a simple git pull grabs the latest changes. Then I use the Linux stow utility to create or update symlinks into ~/.claude.
 
 To make it even easier, a cron job does all this every 30 minutes in the background. In practice the laptops are rarely out of sync, only when I change a skill on laptop1 and switch to laptop2 within half an hour. Or when I forget to push, of course.
+
+---
+
+## Email: subscription cancellation (polite, personal, conversational)
+
+Hi [newsletter author],
+
+The reason I'm unsubscribing isn't a shortcoming on your side. I really like the website and Product Talk. I've watched quite a few of your videos and even joined one of your online gatherings. I subscribed after finding your writing on Claude Code. Despite being retired, I'm still active in the field and follow AI developments closely. Nothing fell short here. Since retiring I pay for everything myself, so I'm simply trimming a few subscriptions to cut costs. I know where to find you on YouTube and Product Talk anyway.
+
+I'm obviously keeping my Claude subscription. I can't live without Claude Code anymore. I gratefully used your llm-context approach to improve my own setup. For the things Claude can't do, like generating images, I use replicate.com on a pay-as-you-go basis.
+
+I've pointed former colleagues to your website, as I think it has a lot of useful material for them.

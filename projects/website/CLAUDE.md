@@ -5,6 +5,10 @@ Personal website for Jan. Technical blog (English) and personal writing (Dutch) 
 - **URL:** https://opa.janvv.nl
 - **Tagline:** "Retired, but not disconnected"
 
+## What to work on
+
+Check `next-post.md` for the post currently being written. When it's empty, pick an idea from the planning vault at `~/Cloud/janvv/life/planning/ideas/blog/`, mark it done there, and move it into `next-post.md`.
+
 ## Development principles
 
 - **KISS:** Prefer simple solutions. This is a personal blog, not enterprise software.
@@ -24,6 +28,8 @@ php -S localhost:8000 system/router.php
 # Publish to server
 ./publish.sh
 ```
+
+Before publishing: remove `published: false` from any post frontmatter — it's used as a draft flag and must be cleared before going live.
 
 ## Writing posts
 
@@ -78,27 +84,15 @@ To translate an existing post (typically a krabbel to English/Esperanto):
 
 ### Images in posts
 
-Place images in the post folder alongside `item.md`:
+Place images in `user/images/` and reference them with an absolute path.
 
 ```
-user/pages/02.tech/2025-12-16-my-post/
-├── item.md
-├── screenshot.png
-└── diagram.svg
+user/images/my-image.png
 ```
 
-Reference in Markdown: `![Alt text](screenshot.png)`
+Reference in Markdown: `![Alt text](/user/images/my-image.png)`
 
-## Homelab docs (generated)
-
-The `user/pages/10.homelab/` subtree is **generated** from the Obsidian vault at `~/Cloud/janvv/life/docs/homelab/`. Every `docs.md` in that subtree has `generated: true` in its frontmatter — do not hand-edit these files, edit the vault source instead.
-
-- **Source of truth:** `~/Cloud/janvv/life/docs/homelab/`
-- **Sync script:** `sync-homelab-to-grav` (in `~/dev/mystrap/dotfiles/shell/.local/bin/`)
-- **Mapping:** `infrastructure/` → `01.infrastructure`, `services/` → `02.services`, `how-to/` → `03.how-to`. Skips `templates/`, `troubleshooting/`, `CLAUDE.md`.
-- **Auto-run:** `publish.sh` runs the sync as its first step, so deploys are always in sync with the vault.
-
-**Workflow:** before committing content changes, run `sync-homelab-to-grav` to surface any vault drift. That way a single commit captures everything, rather than leaving a follow-up "sync" commit after `publish.sh`.
+Grav does not serve images placed in page folders via HTTP — nginx cannot map the clean URL to the physical `user/pages/` path. Images in `user/images/` are served directly by nginx.
 
 ## Site structure
 

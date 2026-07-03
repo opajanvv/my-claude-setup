@@ -70,7 +70,24 @@ Be direct. If something's weak, say so. Skip "this is great, but..." framing.
 ## Style references
 
 Detailed writing samples for comparison are in:
-- `references/style-examples-en.md` -- three English texts (about page + two blog posts)
-- `references/style-examples-nl.md` -- three Dutch texts (about page + two blog posts)
+- `references/style-examples-en.md` — 6 English texts (about page, blog posts, LinkedIn post, LinkedIn comment, blog comment, email)
+- `references/style-examples-nl.md` — 21 Dutch texts (blog posts, LinkedIn posts/comments, newspaper comment, satire, and 15 emails spanning formal letters, tech discussions, short replies, church admin, complaints, and personal notes)
 
 Load the relevant file when reviewing to compare tone and voice against real examples.
+
+## Corpus reference
+
+A larger corpus of cleaned sent mail (~95 NL, ~2 EN messages, 90-day window) is available at `~/.claude/corpus/gmail/` (not synced via mystrap). Use this for broader pattern analysis when the curated examples are insufficient. Update it with `gmail-corpus-export --incremental`.
+
+## Corpus-derived observations
+
+These patterns emerged from analysis of Jan's sent mail corpus and supplement the style summary above:
+
+- **Email openings**: Dutch emails open with "Ha [name]" (informal), "Beste [name]" (semi-formal), or "Geachte [naam]" (formal). Never "Hoi" alone without name. English emails open with "Hi [name]".
+- **Sign-offs**: Dutch emails use "Hartelijke groet" (warm) or "Met vriendelijke groet" (formal). Some close with "Ik hoor/lees het wel" which doubles as both sign-off and gentle nudge. Esperanto signoffs ("Saluton!", "Kore") appear in correspondence with Esperanto-speaking friends.
+- **Reply structure**: Short replies are dense — often 2-4 sentences that combine acknowledgment, opinion, and a dry aside. Long replies open with context, then structured analysis (numbered points, parallel comparisons), and close with a proposed next step.
+- **Formal register**: Jan's voice survives formal constraints. Letters to companies ("Geachte heer/mevrouw") still use conversational rhythm, rhetorical questions, and the occasional "Maar...." The politeness is genuine, not corporate.
+- **Complaint style**: Factual timeline, then a single dry punchline. Never raises voice. "Of zie ik dat verkeerd?" is the signature polite-but-firm button.
+- **Code-switching**: English tech terms appear naturally in Dutch sentences ("Ik zet IPv6 overal uit. Geen gezeik, voor mij is IPv4 goed genoeg."). Not forced, never translated — the English term is the natural one.
+- **Self-deprecation in email**: More raw than in published writing. "Tjonge, wat ben ik erin getuind zeg." "Primitief." "Ik kan het natuurlijk zo laten, maar ik kan het niet laten..."
+- **Structured thinking**: Numbered lists, parallel constructions, and step-by-step diagnosis appear frequently — the programmer's mind at work, more visible in email than in blog posts.
